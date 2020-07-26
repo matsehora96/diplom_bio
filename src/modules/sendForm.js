@@ -47,6 +47,10 @@ const sendForm = () => {
                 statusMessage.textContent = errorMessage;
                 console.error(error);
             });
+        
+        mainForm.querySelectorAll('input').forEach(item => {
+            item.value = '';
+        });
 
         removeMessage();
     });
@@ -75,6 +79,10 @@ const sendForm = () => {
                 statusMessage.textContent = errorMessage;
                 console.error(error);
             });
+        
+        captureForm.querySelectorAll('input').forEach(item => {
+            item.value = '';
+        });
 
         removeMessage();
     });
