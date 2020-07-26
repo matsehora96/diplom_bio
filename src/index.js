@@ -6,6 +6,7 @@ import togglePopup from './modules/togglePopup';
 import sendForm from './modules/sendForm';
 import accordeon from './modules/accordeon';
 import clickButton from './modules/clickButton';
+import calc from './modules/calc';
 
 togglePopup();
 
@@ -14,3 +15,5 @@ sendForm();
 accordeon();
 
 clickButton();
+
+calc();
