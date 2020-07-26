@@ -4,7 +4,7 @@ const sendForm = () => {
         successMessage = 'Отправлено!';
     
     const mainForm = document.querySelector('.main-form'),
-        captureForm = document.querySelector('.capture-form'),
+        captureForm = document.querySelectorAll('.capture-form'),
         userName = document.querySelectorAll('[name="user_name"]'),
         userPhone = document.querySelectorAll('[name="user_phone"]');
 
@@ -55,36 +55,38 @@ const sendForm = () => {
         removeMessage();
     });
 
-    captureForm.addEventListener('submit', (event) => {
-        event.preventDefault();
-
-        captureForm.appendChild(statusMessage);
-        statusMessage.textContent = loadMessage;
-        const formData = new FormData(captureForm);
-
-        let body = {};
-
-        formData.forEach((val, key) => {
-            body[key] = val;
-        });
-
-        postData(body)
-            .then((response) => {
-                if (response.status !== 200) {
-                    throw new Error('status network not 200');
-                }
-                statusMessage.textContent = successMessage;
-            })
-            .catch((error) => {
-                statusMessage.textContent = errorMessage;
-                console.error(error);
+    captureForm.forEach((item) => {
+        item.addEventListener('submit', (event) => {
+            event.preventDefault();
+    
+            item.appendChild(statusMessage);
+            statusMessage.textContent = loadMessage;
+            const formData = new FormData(item);
+    
+            let body = {};
+    
+            formData.forEach((val, key) => {
+                body[key] = val;
             });
-        
-        captureForm.querySelectorAll('input').forEach(item => {
-            item.value = '';
+    
+            postData(body)
+                .then((response) => {
+                    if (response.status !== 200) {
+                        throw new Error('status network not 200');
+                    }
+                    statusMessage.textContent = successMessage;
+                })
+                .catch((error) => {
+                    statusMessage.textContent = errorMessage;
+                    console.error(error);
+                });
+            
+            item.querySelectorAll('input').forEach(item => {
+                item.value = '';
+            });
+    
+            removeMessage();
         });
-
-        removeMessage();
     });
 
     const postData = (body) => {
