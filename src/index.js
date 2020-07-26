@@ -2,6 +2,12 @@
 
 import "@babel/polyfill";
 
-import popupCall from './modules/popupCall';
+import togglePopup from './modules/togglePopup';
+import sendForm from './modules/sendForm';
+import accordeon from './modules/accordeon';
 
-popupCall();
+togglePopup();
+
+sendForm();
+
+accordeon();
