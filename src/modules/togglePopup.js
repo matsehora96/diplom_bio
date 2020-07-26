@@ -7,7 +7,6 @@ const togglePopup = () => {
         body = document.querySelector('body');
     
     body.addEventListener('click', (event) => {
-        
         let target = event.target;
 
         if (target.matches('.call-btn')) {

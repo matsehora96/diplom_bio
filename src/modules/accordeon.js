@@ -8,8 +8,6 @@ const accordeon = () => {
         item.addEventListener('click', (event) => {
             event.preventDefault();
 
-           
-
             collapse[i].classList.toggle('in');
 
         });

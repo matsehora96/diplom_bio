@@ -6,7 +6,8 @@ const sendForm = () => {
     const mainForm = document.querySelector('.main-form'),
         captureForm = document.querySelectorAll('.capture-form'),
         userName = document.querySelectorAll('[name="user_name"]'),
-        userPhone = document.querySelectorAll('[name="user_phone"]');
+        userPhone = document.querySelectorAll('[name="user_phone"]'),
+        userQuest = document.querySelector('[name="user_quest"]');
 
     const statusMessage = document.createElement('div');
     statusMessage.style.cssText = 'font-size: 2rem; color: black;';
@@ -58,16 +59,20 @@ const sendForm = () => {
     captureForm.forEach((item) => {
         item.addEventListener('submit', (event) => {
             event.preventDefault();
-    
+
             item.appendChild(statusMessage);
             statusMessage.textContent = loadMessage;
             const formData = new FormData(item);
-    
+            
             let body = {};
-    
+            
             formData.forEach((val, key) => {
                 body[key] = val;
             });
+
+            if (userQuest.value !== '') {
+                body['user_quest'] = userQuest.value;   
+            }
     
             postData(body)
                 .then((response) => {
