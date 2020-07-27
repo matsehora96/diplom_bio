@@ -7,7 +7,7 @@ const accordeon = () => {
         panelHeadFirst = accordionOne.querySelectorAll('.panel-heading'),
         panelHeadSecond = accordionTwo.querySelectorAll('.panel-heading'),
         collapseFirst = accordionOne.querySelectorAll('.collapse'),
-        btn = document.querySelectorAll('.button'),
+        btn = accordionOne.querySelectorAll('a.construct-btn'),
         collapseSecond = accordionTwo.querySelectorAll('.collapse');
 
     panelHeadFirst.forEach((item, i) => {
