@@ -5,7 +5,7 @@ const togglePopup = () => {
         popupCheck = document.querySelector('.popup-check'),
         popupConsultation = document.querySelector('.popup-consultation'),
         body = document.querySelector('body');
-    
+
     body.addEventListener('click', (event) => {
         let target = event.target;
 
@@ -20,7 +20,7 @@ const togglePopup = () => {
             popupConsultation.style.display = 'block';
         }
     });
-    
+
     popup.forEach((item) => {
         item.addEventListener('click', (event) => {
             let target = event.target;
@@ -28,13 +28,13 @@ const togglePopup = () => {
             if (target.classList.contains('popup-close')) {
                 item.style.display = "none";
             } else {
-                target = target.matches('.popup-content');
-        
+                target = target.closest('.popup-content');
+
                 if (!target) {
                     item.style.display = "none";
                 }
             }
-        }); 
+        });
     });
 };
 

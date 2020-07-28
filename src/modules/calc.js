@@ -14,7 +14,7 @@ const calc = (price = 10000) => {
     twineSecond.closest('.select-box').style.display = 'none';
 
     const countSum = () => {
-        
+
         const valueDiameterFirst = diameterFirst.value,
             valueDiameterSecond = diameterSecond.value,
             valueTwineFirst = twineFirst.value,
@@ -26,7 +26,7 @@ const calc = (price = 10000) => {
             calcTwineFirst = 0,
             calcTwineSecond = 0,
             calcSwitchSecond = 0;
-        
+
         if (switchFirst.checked) {
             diameterSecond.closest('.select-box').style.display = 'none';
             diameterSecond.closest('.select-box').previousElementSibling.style.display = 'none';
@@ -38,7 +38,7 @@ const calc = (price = 10000) => {
             twineSecond.closest('.select-box').style.display = 'inline-block';
             calcSwitchFirst = price + 5000;
         }
-        
+
         // Diameter and twine first
         (valueDiameterFirst === '1.4 метра') ? calcDiameterFirst = 0 : calcDiameterFirst = calcSwitchFirst * 0.2;
 
@@ -56,10 +56,10 @@ const calc = (price = 10000) => {
         (!switchFirst.checked && switchSecond.checked) ? calcSwitchSecond = 2000 :
         (switchFirst.checked && switchSecond.checked) ? calcSwitchSecond = 1000 :
                                                     calcSwitchSecond = 0;
-                                                        
+
         calcResult.value = calcSwitchFirst + calcDiameterFirst + calcDiameterSecond + calcTwineFirst + calcTwineSecond + calcSwitchSecond;
     };
-    
+
     panelBlock.addEventListener('change', (event) => {
         const target = event.target;
 
