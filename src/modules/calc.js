@@ -9,6 +9,9 @@ const calc = (price = 10000) => {
         calcResult = document.getElementById('calc-result');
 
     calcResult.value = price + 1000;
+    diameterSecond.closest('.select-box').style.display = 'none';
+    diameterSecond.closest('.select-box').previousElementSibling.style.display = 'none';
+    twineSecond.closest('.select-box').style.display = 'none';
 
     const countSum = () => {
         
@@ -22,15 +25,27 @@ const calc = (price = 10000) => {
             calcTwineFirst = 0,
             calcSwitchSecond = 0;
         
-        (switchFirst.checked) ? calcSwitchFirst = price : calcSwitchFirst = price + 5000;
+        if (switchFirst.checked) {
+            diameterSecond.closest('.select-box').style.display = 'none';
+            diameterSecond.closest('.select-box').previousElementSibling.style.display = 'none';
+            twineSecond.closest('.select-box').style.display = 'none';
+            calcSwitchFirst = price;
+        } else {
+            diameterSecond.closest('.select-box').style.display = 'inline-block';
+            diameterSecond.closest('.select-box').previousElementSibling.style.display = 'inline-block';
+            twineSecond.closest('.select-box').style.display = 'inline-block';
+            calcSwitchFirst = price + 5000;
+        }
 
-        (valueDiameterFirst === '1.4 метра') ? calcDiameterFirst = 0 : calcDiameterFirst = price * 0.2;
+        (valueDiameterFirst === '1.4 метра') ? calcDiameterFirst = 0 : calcDiameterFirst = calcSwitchFirst * 0.2;
 
         (valueTwineFirst === '1 штука') ? calcTwineFirst = 0 :
-        (valueTwineFirst === '2 штуки') ? calcTwineFirst = price * 0.3 :
-                                        calcTwineFirst = price * 0.5;
+        (valueTwineFirst === '2 штуки') ? calcTwineFirst = calcSwitchFirst * 0.3 :
+                                        calcTwineFirst = calcSwitchFirst * 0.5;
 
-        (switchSecond.checked) ? calcSwitchSecond = 1000 : calcSwitchSecond = 0;
+        (!switchFirst.checked && switchSecond.checked) ? calcSwitchSecond = 2000 :
+        (switchFirst.checked && !switchSecond.checked) ? calcSwitchSecond = 0 :
+                                                        calcSwitchSecond = 1000;
 
         calcResult.value = calcSwitchFirst + calcDiameterFirst + calcTwineFirst + calcSwitchSecond;
     };
