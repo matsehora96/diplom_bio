@@ -25,11 +25,10 @@ const togglePopup = () => {
         item.addEventListener('click', (event) => {
             let target = event.target;
 
-            if (target.matches('.popup-close')) {
+            if (target.classList.contains('popup-close')) {
                 item.style.display = "none";
-            } 
-            else {
-                target = target.closest('.popup-content');
+            } else {
+                target = target.matches('.popup-content');
         
                 if (!target) {
                     item.style.display = "none";

@@ -22,7 +22,9 @@ const calc = (price = 10000) => {
 
         let calcSwitchFirst = 0,
             calcDiameterFirst = 0,
+            calcDiameterSecond = 0,
             calcTwineFirst = 0,
+            calcTwineSecond = 0,
             calcSwitchSecond = 0;
         
         if (switchFirst.checked) {
@@ -36,18 +38,26 @@ const calc = (price = 10000) => {
             twineSecond.closest('.select-box').style.display = 'inline-block';
             calcSwitchFirst = price + 5000;
         }
-
+        
+        // Diameter and twine first
         (valueDiameterFirst === '1.4 метра') ? calcDiameterFirst = 0 : calcDiameterFirst = calcSwitchFirst * 0.2;
 
         (valueTwineFirst === '1 штука') ? calcTwineFirst = 0 :
         (valueTwineFirst === '2 штуки') ? calcTwineFirst = calcSwitchFirst * 0.3 :
                                         calcTwineFirst = calcSwitchFirst * 0.5;
 
-        (!switchFirst.checked && switchSecond.checked) ? calcSwitchSecond = 2000 :
-        (switchFirst.checked && !switchSecond.checked) ? calcSwitchSecond = 0 :
-                                                        calcSwitchSecond = 1000;
+        // Diameter and twine second
+        (valueDiameterSecond === '1.4 метра') ? calcDiameterSecond = 0 : calcDiameterSecond = calcSwitchFirst * 0.2;
 
-        calcResult.value = calcSwitchFirst + calcDiameterFirst + calcTwineFirst + calcSwitchSecond;
+        (valueTwineSecond === '1 штука') ? calcTwineSecond = 0 :
+        (valueTwineSecond === '2 штуки') ? calcTwineSecond = calcSwitchFirst * 0.3 :
+                                        calcTwineSecond = calcSwitchFirst * 0.5;
+
+        (!switchFirst.checked && switchSecond.checked) ? calcSwitchSecond = 2000 :
+        (switchFirst.checked && switchSecond.checked) ? calcSwitchSecond = 1000 :
+                                                    calcSwitchSecond = 0;
+                                                        
+        calcResult.value = calcSwitchFirst + calcDiameterFirst + calcDiameterSecond + calcTwineFirst + calcTwineSecond + calcSwitchSecond;
     };
     
     panelBlock.addEventListener('change', (event) => {
