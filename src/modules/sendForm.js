@@ -7,8 +7,7 @@ const sendForm = (dataObj) => {
         captureForm = document.querySelectorAll('.capture-form'),
         userName = document.querySelectorAll('[name="user_name"]'),
         userPhone = document.querySelectorAll('[name="user_phone"]'),
-        userQuest = document.querySelector('[name="user_quest"]'),
-        calcResult = document.getElementById('calc-result');
+        userQuest = document.querySelector('[name="user_quest"]');
 
     const statusMessage = document.createElement('div');
     statusMessage.style.cssText = 'font-size: 2rem; color: black;';
@@ -64,7 +63,7 @@ const sendForm = (dataObj) => {
     captureForm.forEach((item) => {
         item.addEventListener('submit', (event) => {
             event.preventDefault();
-
+            let target = event.target;
             userPhone.forEach((elem) => {
                 if (elem.value.length > 4 && elem.value.length < 16) {
 
@@ -77,11 +76,17 @@ const sendForm = (dataObj) => {
                     formData.forEach((val, key) => {
                         body[key] = val;
                     });
-    
-                    for (let key in dataObj) {
-                        body[key] = dataObj[key];
+                    
+                    if (target.matches('#submition-form')) {
+                        for (let key in dataObj) {
+                            body[key] = dataObj[key];
+                        }
                     }
-    
+                    
+                    if (userQuest.value !== '') {
+                        body['user_quest'] = userQuest.value;
+                    }
+                     
                     postData(body)
                         .then((response) => {
                             if (response.status !== 200) {
@@ -93,11 +98,12 @@ const sendForm = (dataObj) => {
                             statusMessage.textContent = errorMessage;
                             console.error(error);
                         });
-    
+                    
+                    userQuest.value = '';
                     item.querySelectorAll('input').forEach(item => {
                         item.value = '';
                     });
-    
+                    
                     removeMessage();
                 }
             }) 

@@ -17,6 +17,11 @@ const calc = (price, data) => {
         inputMeter.value = inputMeter.value.replace(/\D/g, ''); 
     });
 
+    data['Тип септика'] = 'Однокамерный';
+    data['Первый колодец'] = '1.4 метра, 1 штука';
+    data['Днище'] = 'Есть';
+    data['Оплата'] = calcResult.value;
+
     const countSum = () => {
 
         const valueDiameterFirst = diameterFirst.value,
@@ -95,6 +100,7 @@ const calc = (price, data) => {
         calcResult.value = calcSwitchFirst + calcDiameterFirst + calcDiameterSecond + calcTwineFirst + calcTwineSecond + calcSwitchSecond;
 
         data['Оплата'] = calcResult.value;
+
     };
 
     panelBlock.addEventListener('change', (event) => {

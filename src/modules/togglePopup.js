@@ -4,6 +4,7 @@ const togglePopup = () => {
         popupDiscount = document.querySelector('.popup-discount'),
         popupCheck = document.querySelector('.popup-check'),
         popupConsultation = document.querySelector('.popup-consultation'),
+        popupConstruct = document.querySelector('.popup-constructor'),
         body = document.querySelector('body');
 
     body.addEventListener('click', (event) => {
@@ -18,6 +19,8 @@ const togglePopup = () => {
         } else if (target.matches('.consultation-btn')) {
             event.preventDefault();
             popupConsultation.style.display = 'block';
+        } else if (target.matches('button.construct-btn')) {
+            popupConstruct.style.display = 'block';
         }
     });
 
