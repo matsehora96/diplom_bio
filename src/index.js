@@ -8,12 +8,14 @@ import accordeon from './modules/accordeon';
 import clickButton from './modules/clickButton';
 import calc from './modules/calc';
 
-togglePopup();
+const DataObj = new Object();
 
-sendForm();
+togglePopup();
 
 accordeon();
 
+calc(10000, DataObj);
+
 clickButton();
 
-calc();
+sendForm(DataObj);
